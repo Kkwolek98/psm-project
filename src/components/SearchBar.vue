@@ -1,0 +1,60 @@
+<template>
+  <div class="search-bar">
+    <input
+      type="text"
+      v-model="search"
+      @input="delay"
+    />
+    <ul class="autocomplete-results">
+      <li class="autocomplete-result" v-for="item in autocompleteItems" :key="item.food_name">
+        {{item.food_name}}
+      </li>
+    </ul>
+  </div>
+</template>
+
+<script>
+const axios = require('axios');
+
+export default {
+  name: 'SearchBar',
+  data: function () {
+    return {
+      search: '',
+      timer: 0,
+      prevSearch: '',
+      autocompleteItems: []
+    }
+  },
+  methods: {
+      onChange: function() {
+        let config = {
+          headers: {
+            'x-app-id': '49c2f1af',
+            'x-app-key': '804fe04628f9383b7eae87e409acf2fc'
+          }
+        }
+        axios
+          .get('https://trackapi.nutritionix.com/v2/search/instant?branded=false&query=' + this.search, config)
+          .then(response => this.useResponse(response));
+        
+      },
+      delay: function() {
+        clearTimeout(this.timer);
+        this.timer = setTimeout(function () {
+          if(this.prevSearch != this.search) {
+            this.prevSearch = this.search
+            this.onChange();
+          }
+        }.bind(this), 500);
+      },
+      useResponse: function(response) {
+        console.log(response.data)
+        this.autocompleteItems = response.data.common
+      }
+  }
+}
+</script>
+
+<style scoped lang="scss">
+</style>
