@@ -1,19 +1,21 @@
 <template>
-  <div class="find-item">
-    <SearchBar/>
-    <div>...or scan barcode.</div>
+  <div class="find">
+    <div class="box box-center">
+      <SearchBar />
+      <div>...or scan barcode.</div>
+    </div>
   </div>
 </template>
 
 <script>
-import SearchBar from '@/components/SearchBar.vue'
+import SearchBar from "@/components/SearchBar.vue";
 
 export default {
-  name: 'FindItem',
+  name: "FindItem",
   components: {
     SearchBar
   }
-}
+};
 </script>
 
 <style scoped lang="scss">
