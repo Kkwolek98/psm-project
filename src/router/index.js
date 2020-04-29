@@ -20,6 +20,21 @@ const routes = [
     // }
   },
   {
+    path: '/day',
+    name: 'Day',
+    component: () => import('../views/DayView.vue'),
+    // props: true,
+    // to trzeba odkomentowac na samym koncu
+    // beforeEnter: (to, from, next) =>{
+    //   if(to.this.$email){
+    //     next()
+    //   }else{
+    //     next({name: 'LoginPage'})
+    //   }
+    // }
+  },
+
+  {
     path: '/about',
     name: 'About',
     meta: { display: "About" },
