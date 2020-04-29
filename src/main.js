@@ -4,7 +4,7 @@ import './registerServiceWorker'
 import router from './router'
 
 Vue.config.productionTip = false
-
+Vue.prototype.$email = ''
 new Vue({
   router,
   render: h => h(App)

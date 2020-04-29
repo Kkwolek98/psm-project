@@ -9,6 +9,7 @@
       <router-link to="/findItem">Find Item</router-link>|
       <router-link to="/login">Log In</router-link>|
       <router-link to="/signup">Sign Up</router-link>
+      <span>{{this.$email}}</span>
     </div>
   </div>
 </template>
@@ -126,6 +127,7 @@ input {
 
 <script>
 import HeaderTitle from "@/components/HeaderTitle.vue";
+
 export default {
   components: {
     HeaderTitle

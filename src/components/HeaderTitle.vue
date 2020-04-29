@@ -21,7 +21,10 @@ export default {
       this.getTitle();
     }
   },
-  mounted: () => this.getTitle()
+  // mounted: () => this.getTitle()
+  mounted(){
+    this.getTitle
+  }
 };
 </script>
 

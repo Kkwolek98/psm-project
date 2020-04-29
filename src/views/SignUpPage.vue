@@ -43,10 +43,13 @@ export default {
           .createUserWithEmailAndPassword(this.email, this.password)
           .then(user => {
             console.log(user.user);
+            this.goToLogin();
           })
           .catch(error => {
             this.error = error;
           });
+
+        
       }
     },
     passwordCompare() {
@@ -56,6 +59,9 @@ export default {
       }
       this.error = "";
       return true;
+    },
+    goToLogin(){
+        this.$router.push({name: 'LoginPage' })
     }
   }
 };
