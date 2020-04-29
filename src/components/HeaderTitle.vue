@@ -21,9 +21,8 @@ export default {
       this.getTitle();
     }
   },
-  // mounted: () => this.getTitle()
-  mounted(){
-    this.getTitle
+  mounted: function() {
+    this.getTitle();
   }
 };
 </script>
@@ -39,6 +38,7 @@ export default {
   z-index: -1;
 }
 .title-small {
+  font-weight: bold;
   font-size: 32px;
   color: #959595;
   z-index: 0;
