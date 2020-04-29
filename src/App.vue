@@ -48,24 +48,24 @@ $button-gradient-second: #6454f0;
 }
 
 body {
-  background: #1c1c1c;
-  color: $primary-font-color;
+  background: #1c1c1c !important;
+  color: $primary-font-color !important;
 }
 
 .custom-button--large,
 button {
   transition: all 0.4s ease-in-out;
-  height: 42px;
+  height: 42px !important;
   background-image: linear-gradient(
     105deg,
     $button-gradient-first 9%,
     $button-gradient-second 91%
   );
-  width: 130px;
+  width: 130px !important;
   border: 0;
-  border-radius: 20px;
+  border-radius: 20px !important;
   color: $button-font-color;
-  font-size: 24px;
+  font-size: 24px !important;
   cursor: pointer;
   &:hover {
     background-image: linear-gradient(
@@ -104,10 +104,10 @@ input {
   width: 100%;
   display: block;
   border: 0;
-  height: 38px;
-  border-radius: 8px;
+  height: 38px !important;
+  border-radius: 8px !important;
   background-color: rgba(119, 119, 119, 0.2);
-  margin-bottom: 32px;
+  margin-bottom: 32px !important;
   color: $primary-font-color;
 }
 

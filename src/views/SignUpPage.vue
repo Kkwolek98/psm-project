@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="app-container">
     <form class="signup-form box box-center">
       <label for="signup-email">Email</label>
       <input type="email" id="signup-email" v-model="email" required />
@@ -48,8 +48,6 @@ export default {
           .catch(error => {
             this.error = error;
           });
-
-        
       }
     },
     passwordCompare() {
@@ -60,8 +58,8 @@ export default {
       this.error = "";
       return true;
     },
-    goToLogin(){
-        this.$router.push({name: 'LoginPage' })
+    goToLogin() {
+      this.$router.push({ name: "LoginPage" });
     }
   }
 };
