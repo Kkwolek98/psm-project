@@ -1,20 +1,52 @@
 <template>
-  <div class="container">
-    <form class="login-form box box-center">
+  <div class="app-container">
+    <form class="login-form box box-center" @submit.prevent="loginUser">
       <label for="login-email">Username or Email</label>
-      <input type="email" id="login-email" required />
+      <input type="email" id="login-email" v-model="email" required />
       <label for="login-password">Password</label>
-      <input type="password" id="login-password" required />
+      <input type="password" id="login-password" v-model="password" required />
       <button>Log in</button>
       <p class="font-12">or</p>
       <router-link to="/signup" class="font-12--important clickable">create an account</router-link>
     </form>
+    <p>{{errors}}</p>
   </div>
 </template>
 
 <script>
+import firebase from "../firebase/init";
+import Vue from "vue";
 export default {
-  name: "LoginPage"
+  name: "LoginPage",
+  data: function() {
+    return {
+      errors: "",
+      email: "",
+      password: ""
+    };
+  },
+  methods: {
+    loginUser() {
+      firebase.auth
+        .signInWithEmailAndPassword(this.email, this.password)
+        .then(user => {
+          console.log(user.user.email);
+          this.goToHome();
+          firebase.auth.onAuthStateChanged(user => {
+            console.log(user);
+          });
+        })
+        .catch(error => (this.errors = error));
+
+      if (this.password && this.email) {
+        this.errors = "";
+      }
+    },
+    goToHome() {
+      Vue.prototype.$email = this.email;
+      this.$router.push({ name: "Home" });
+    }
+  }
 };
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="app-container">
     <form class="signup-form box box-center">
       <label for="signup-email">Email</label>
       <input type="email" id="signup-email" v-model="email" required />
@@ -43,6 +43,7 @@ export default {
           .createUserWithEmailAndPassword(this.email, this.password)
           .then(user => {
             console.log(user.user);
+            this.goToLogin();
           })
           .catch(error => {
             this.error = error;
@@ -56,6 +57,9 @@ export default {
       }
       this.error = "";
       return true;
+    },
+    goToLogin() {
+      this.$router.push({ name: "LoginPage" });
     }
   }
 };
