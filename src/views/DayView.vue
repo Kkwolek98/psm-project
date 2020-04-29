@@ -1,10 +1,12 @@
 <template>
   <div class="day">
-    <div class="box kcal-box">
-      <KcalMeter v-bind:kcal="kcal" v-bind:kcalGoal="kcalGoal" />
-    </div>
-    <div class="box kcal-box">
-      <MealList v-bind:meals="meals" />
+    <div class="row width-60">
+      <div class="box kcal-box">
+        <KcalMeter v-bind:kcal="kcal" v-bind:kcalGoal="kcalGoal" />
+      </div>
+      <div class="box kcal-box">
+        <MealList v-bind:meals="meals" />
+      </div>
     </div>
   </div>
 </template>
@@ -54,6 +56,10 @@ export default {
 <style lang="scss">
 .kcal-box {
   width: 360px;
+  margin: 0 auto;
+}
+.width-60 {
+  width: 60%;
   margin: 0 auto;
 }
 </style>
