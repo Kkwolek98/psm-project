@@ -83,6 +83,7 @@ button {
   background-color: rgb(46, 46, 46);
   padding: 28px;
   z-index: 10;
+  margin-bottom: 32px !important;
 }
 
 .box-center {
