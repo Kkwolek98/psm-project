@@ -14,7 +14,7 @@ const routes = [
     meta: {
       requiresAuth: true
     }
-    
+
   },
   {
     path: '/profile',
@@ -24,17 +24,17 @@ const routes = [
     },
     component: () => import('../views/Profile.vue'),
     props: true,
-   
+
   },
   {
     path: '/jurnal',
     name: 'Jurnal',
     component: () => import('../views/Jurnal.vue'),
     props: true,
-    meta: { 
+    meta: {
       display: "Jurnal",
       requiresAuth: true
-     }
+    }
 
   },
   {
@@ -45,27 +45,28 @@ const routes = [
     },
     component: () => import('../views/DayView.vue'),
     // props: true,
-    
+
   },
 
   {
     path: '/about',
     name: 'About',
-    meta: { 
+    meta: {
       display: "About",
       requiresAuth: true
-  },
+    },
     component: () => import('../views/About.vue'),
-    
+
   },
   {
     path: '/findItem',
     name: 'Find Item',
-    meta: { display: "Add",
-    requiresAuth: true
- },
+    meta: {
+      display: "Add",
+      requiresAuth: true
+    },
     component: () => import('../views/FindItem.vue'),
-   
+
   },
   {
     path: '/login',
@@ -82,23 +83,26 @@ const routes = [
   {
     path: '/addItem/:name',
     name: 'Add Item',
+    meta: { display: "Add" },
     component: () => import('../views/AddItem.vue'),
     props: true
   },
   {
     path: '/addItem',
     name: 'Add Item',
+    meta: { display: "Add" },
     component: () => import('../views/AddItem.vue')
   },
   {
     path: '/logout',
     name: 'Logout',
-    meta: { display: "Logout",
-    requiresAuth: true
+    meta: {
+      display: "Logout",
+      requiresAuth: true
     },
     component: () => import('../views/Logout.vue')
   }
- 
+
 ]
 
 const router = new VueRouter({
@@ -106,15 +110,15 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if(to.matched.some(record => record.meta.requiresAuth )) {   
-    if(!firebase.auth.currentUser){    
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (!firebase.auth.currentUser) {
       next({
         path: '/login',
         query: {
           redirect: to.fullPath
         }
       })
-    }else{
+    } else {
       next()
     }
   }
