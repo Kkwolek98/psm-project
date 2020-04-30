@@ -86,6 +86,10 @@ const routes = [
     props: true
   },
   {
+    path: '/addItem',
+    name: 'Add Item',
+    component: () => import('../views/AddItem.vue')
+  },
     path: '/logout',
     name: 'Logout',
     meta: { display: "Logout",
