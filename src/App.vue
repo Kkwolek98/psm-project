@@ -4,12 +4,13 @@
     <router-view class="router" />
 
     <div id="nav">
-      <router-link to="/">Home</router-link>|
-      <router-link to="/about">About</router-link>|
-      <router-link to="/findItem">Find Item</router-link>|
-      <router-link to="/login">Log In</router-link>|
-      <router-link to="/signup">Sign Up</router-link>
-      <span>{{this.$email}}</span>
+      <router-link to="/" v-if="logged">Home</router-link>|
+      <router-link to="/about" v-if="logged">About</router-link> |
+      <router-link to="/findItem" v-if="logged">Find Item</router-link> |
+      <router-link to="/login" v-if="!logged">Log In</router-link> |
+      <router-link to="/signup" v-if="!logged">Sign Up</router-link> |
+      <router-link to="/logout" v-if="logged">Log Out</router-link>
+      <span v-if="logged">{{this.currentUser}}</span>
     </div>
   </div>
 </template>
@@ -60,6 +61,7 @@ button {
     105deg,
     $button-gradient-first 9%,
     $button-gradient-second 91%
+
   );
   width: 130px !important;
   border: 0;
@@ -76,6 +78,7 @@ button {
     transition: all 0.8s ease-in-out;
     -webkit-transition: all 0.8s ease-in-out;
   }
+
 }
 
 .box {
@@ -133,8 +136,21 @@ h3 {
 
 <script>
 import HeaderTitle from "@/components/HeaderTitle.vue";
+import firebase from './firebase/init'
 
 export default {
+  data: function(){
+    return{
+      logged: false,
+      currentUser: false
+    }
+  },
+  created() {
+    if(firebase.auth.currentUser){
+      this.logged = true;
+      this.currentUser = firebase.auth.currentUser.email
+    }
+  },
   components: {
     HeaderTitle
   }

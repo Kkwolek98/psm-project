@@ -32,9 +32,6 @@ export default {
         .then(user => {
           console.log(user.user.email);
           this.goToHome();
-          firebase.auth.onAuthStateChanged(user => {
-            console.log(user);
-          });
         })
         .catch(error => (this.errors = error));
 

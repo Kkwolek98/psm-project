@@ -38,6 +38,8 @@ export default {
     }
   },
   methods: {
+
+    // 
     saveData(){
       addData(1,1,1,1,this.name,1,'kasia@xd.pl')
     }
