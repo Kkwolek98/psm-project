@@ -11,10 +11,24 @@
 </template>
 
 <script>
+import * as profile from "../firebase/profile";
 export default {
   name: "Jurnal",
+  methods: {
+    getUser() {
+      let email = profile.getLoggedUser().email;
+      if (email) {
+        this.userEmail = email;
+        console.log(email);
+      } else {
+        console.warn("No user logged in");
+        //go to home page
+      }
+    }
+  },
   data: function() {
     return {
+      userEmail: "",
       dayList: [
         {
           day: "12.07",
@@ -42,6 +56,9 @@ export default {
         }
       ]
     };
+  },
+  created: function() {
+    this.getUser();
   }
 };
 </script>
