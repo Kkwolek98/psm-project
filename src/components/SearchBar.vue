@@ -7,7 +7,7 @@
     />
     <ul class="autocomplete-results">
       <li class="autocomplete-result" v-for="item in autocompleteItems" :key="item.food_name">
-        {{item.food_name}}
+        <a @click="routeTo(item.food_name)">{{item.food_name}}</a>
       </li>
     </ul>
   </div>
@@ -49,8 +49,10 @@ export default {
         }.bind(this), 500);
       },
       useResponse: function(response) {
-        console.log(response.data)
         this.autocompleteItems = response.data.common
+      },
+      routeTo: function(food) {
+        this.$router.push({ path: 'addItem', query: { name: food }})
       }
   }
 }

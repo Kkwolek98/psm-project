@@ -87,6 +87,17 @@ const routes = [
     name: 'SignUpPage',
     meta: { display: "Register" },
     component: () => import('../views/SignUpPage.vue')
+  },
+  {
+    path: '/addItem/:name',
+    name: 'Add Item',
+    component: () => import('../views/AddItem.vue'),
+    props: true
+  },
+  {
+    path: '/addItem',
+    name: 'Add Item',
+    component: () => import('../views/AddItem.vue')
   }
 ]
 
