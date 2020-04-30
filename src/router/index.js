@@ -95,12 +95,8 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if(to.matched.some(record => record.meta.requiresAuth )) {
-    console.log('lol');
-    
-    if(!firebase.auth.currentUser){
-      console.log('lol9');
-      
+  if(to.matched.some(record => record.meta.requiresAuth )) {   
+    if(!firebase.auth.currentUser){    
       next({
         path: '/login',
         query: {

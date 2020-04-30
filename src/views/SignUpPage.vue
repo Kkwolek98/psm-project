@@ -36,13 +36,10 @@ export default {
   methods: {
     registerUser(e) {
       if (this.passwordCompare()) {
-        console.log(firebase.auth);
-        console.log(this.email, this.password);
         e.preventDefault();
         firebase.auth
           .createUserWithEmailAndPassword(this.email, this.password)
-          .then(user => {
-            console.log(user.user);
+          .then(() => {
             this.goToLogin();
           })
           .catch(error => {
