@@ -83,6 +83,7 @@ button {
   background-color: rgb(46, 46, 46);
   padding: 28px;
   z-index: 10;
+  margin: 0 auto;
   margin-bottom: 32px !important;
 }
 
@@ -123,6 +124,10 @@ input {
 .font-12--important {
   color: $button-font-color;
   font-size: 12px;
+}
+
+h3 {
+  text-align: left !important;
 }
 </style>
 
