@@ -2,7 +2,7 @@ import firebase from './init';
 
 
 
-export function addData(carb, count, fats, kcal, name, proteins, userEmail){
+export function addData(carb, count, fats, kcal, name, proteins){
     console.log(firebase);
     
     firebase.firestore.collection('entries').add({
@@ -13,7 +13,7 @@ export function addData(carb, count, fats, kcal, name, proteins, userEmail){
         kcal: kcal,
         name: name,
         proteins: proteins,
-        userEmail: userEmail
+        userID: firebase.auth.currentUser.uid
     })
     .then( docRef => console.log('data added', docRef.id))
     .catch(error => console.log(error))
@@ -24,7 +24,6 @@ export function realTimeListener(callback){
         let changes = snapshot.docChanges();
         changes.forEach(change =>{
             if(change.type == 'added'){
-                console.log(change.doc)
                 callback(change.doc.data())
             }
         })
