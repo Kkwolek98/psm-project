@@ -34,6 +34,21 @@ const routes = [
     // }
   },
   {
+    path: '/jurnal',
+    name: 'Jurnal',
+    component: () => import('../views/Jurnal.vue'),
+    props: true,
+    meta: { display: "Jurnal" }
+    // to trzeba odkomentowac na samym koncu
+    // beforeEnter: (to, from, next) =>{
+    //   if(to.this.$email){
+    //     next()
+    //   }else{
+    //     next({name: 'LoginPage'})
+    //   }
+    // }
+  },
+  {
     path: '/day',
     name: 'Day',
     component: () => import('../views/DayView.vue'),
