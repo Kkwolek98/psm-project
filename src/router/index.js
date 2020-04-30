@@ -90,6 +90,7 @@ const routes = [
     name: 'Add Item',
     component: () => import('../views/AddItem.vue')
   },
+  {
     path: '/logout',
     name: 'Logout',
     meta: { display: "Logout",
