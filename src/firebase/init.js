@@ -17,6 +17,7 @@
 
   export default {
     firestore: db.firestore(), 
-    auth: db.auth()
+    auth: db.auth(),
+    storage: db.storage()
   } 
   

@@ -8,7 +8,7 @@
     <form>
       <label for="name">name</label>
       <input type="text" v-model="name" placeholder="ex. egg">
-      <button v-on:click="saveData()">submit</button>
+      <button v-on:click.prevent="saveData()">submit</button>
     </form>
 
     <ul>
@@ -41,7 +41,7 @@ export default {
 
     // 
     saveData(){
-      addData(1,1,1,1,this.name,1,'kasia@xd.pl')
+      addData(1,1,1,1,this.name,1)
     }
   },
   mounted() {
