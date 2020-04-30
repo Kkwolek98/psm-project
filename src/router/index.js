@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import firebase from '../firebase/init'
 
 Vue.use(VueRouter)
 
@@ -10,86 +11,61 @@ const routes = [
     name: 'Home',
     component: Home,
     props: true,
-    // to trzeba odkomentowac na samym koncu
-    // beforeEnter: (to, from, next) =>{
-    //   if(to.this.$email){
-    //     next()
-    //   }else{
-    //     next({name: 'LoginPage'})
-    //   }
-    // }
+    meta: {
+      requiresAuth: true
+    }
+    
   },
   {
     path: '/profile',
     name: 'Profile',
+    meta: {
+      requiresAuth: true
+    },
     component: () => import('../views/Profile.vue'),
     props: true,
-    // to trzeba odkomentowac na samym koncu
-    // beforeEnter: (to, from, next) =>{
-    //   if(to.this.$email){
-    //     next()
-    //   }else{
-    //     next({name: 'LoginPage'})
-    //   }
-    // }
+   
   },
   {
     path: '/jurnal',
     name: 'Jurnal',
     component: () => import('../views/Jurnal.vue'),
     props: true,
-    meta: { display: "Jurnal" }
-    // to trzeba odkomentowac na samym koncu
-    // beforeEnter: (to, from, next) =>{
-    //   if(to.this.$email){
-    //     next()
-    //   }else{
-    //     next({name: 'LoginPage'})
-    //   }
-    // }
+    meta: { 
+      display: "Jurnal",
+      requiresAuth: true
+     }
+
   },
   {
     path: '/day',
     name: 'Day',
+    meta: {
+      requiresAuth: true
+    },
     component: () => import('../views/DayView.vue'),
     // props: true,
-    // to trzeba odkomentowac na samym koncu
-    // beforeEnter: (to, from, next) =>{
-    //   if(to.this.$email){
-    //     next()
-    //   }else{
-    //     next({name: 'LoginPage'})
-    //   }
-    // }
+    
   },
 
   {
     path: '/about',
     name: 'About',
-    meta: { display: "About" },
+    meta: { 
+      display: "About",
+      requiresAuth: true
+  },
     component: () => import('../views/About.vue'),
-    // to trzeba odkomentowac na samym koncu
-    // beforeEnter: (to, from, next) =>{
-    //   if(to.this.$email){
-    //     next()
-    //   }else{
-    //     next({name: 'LoginPage'})
-    //   }
-    // }
+    
   },
   {
     path: '/findItem',
     name: 'Find Item',
-    meta: { display: "Add" },
+    meta: { display: "Add",
+    requiresAuth: true
+ },
     component: () => import('../views/FindItem.vue'),
-    // to trzeba odkomentowac na samym koncu
-    // beforeEnter: (to, from, next) =>{
-    //   if(to.this.$email){
-    //     next()
-    //   }else{
-    //     next({name: 'LoginPage'})
-    //   }
-    // }
+   
   },
   {
     path: '/login',
@@ -102,11 +78,48 @@ const routes = [
     name: 'SignUpPage',
     meta: { display: "Register" },
     component: () => import('../views/SignUpPage.vue')
+  },
+  {
+    path: '/addItem/:name',
+    name: 'Add Item',
+    component: () => import('../views/AddItem.vue'),
+    props: true
+  },
+  {
+    path: '/addItem',
+    name: 'Add Item',
+    component: () => import('../views/AddItem.vue')
+  },
+  {
+    path: '/logout',
+    name: 'Logout',
+    meta: { display: "Logout",
+    requiresAuth: true
+    },
+    component: () => import('../views/Logout.vue')
   }
+ 
 ]
 
 const router = new VueRouter({
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  if(to.matched.some(record => record.meta.requiresAuth )) {   
+    if(!firebase.auth.currentUser){    
+      next({
+        path: '/login',
+        query: {
+          redirect: to.fullPath
+        }
+      })
+    }else{
+      next()
+    }
+  }
+
+  next()
 })
 
 export default router
