@@ -1,10 +1,15 @@
 <template>
   <div class="jurnal">
     <div class="box col-md-3">
-      <h3>Jurnal</h3>
-      <div class="day" v-for="day in dayList" :key="day.day">
-        <div class="day-name">{{day.day}}</div>
-        <div class>Total: {{day.kcal}} kcal</div>
+      <h3>Last Week</h3>
+      <div
+        class="day-item clickable"
+        v-for="day in lastWeek"
+        :key="day.index"
+        @click="routeTo(day.date.getTime())"
+      >
+        <div class="day-name">{{day.date.getDate()}}.{{day.date.getMonth()}}</div>
+        <div class="day-calories">{{day.calories}} kcal</div>
       </div>
     </div>
   </div>
@@ -12,6 +17,7 @@
 
 <script>
 import * as profile from "../firebase/profile";
+import * as food from "../firebase/food";
 export default {
   name: "Jurnal",
   methods: {
@@ -24,49 +30,44 @@ export default {
         console.warn("No user logged in");
         //go to home page
       }
+    },
+    getLastWeek() {
+      let today = new Date();
+      //   let day = today.getDate();
+      let week = new Array(7);
+      for (let i = 0; i < 7; i++) {
+        week[i] = {
+          date: new Date(today.getTime() - 24 * 60 * 60 * 1000 * i),
+          calories: 0
+        };
+        food
+          .getCaloriesForDay(week[i].date)
+          .then(cal => (week[i].calories = cal));
+      }
+      this.lastWeek = week;
+      console.log(week);
+    },
+    routeTo(day) {
+      this.$router.push({ path: "/day", query: { day } });
     }
   },
   data: function() {
     return {
       userEmail: "",
-      dayList: [
-        {
-          day: "12.07",
-          kcal: 1200
-        },
-        {
-          day: "13.07",
-          kcal: 1290
-        },
-        {
-          day: "14.07",
-          kcal: 1211
-        },
-        {
-          day: "15.07",
-          kcal: 2200
-        },
-        {
-          day: "16.07",
-          kcal: 1230
-        },
-        {
-          day: "17.07",
-          kcal: 1200
-        }
-      ]
+      lastWeek: []
     };
   },
   created: function() {
     this.getUser();
+    this.getLastWeek();
   }
 };
 </script>
 
 <style lang="scss">
-.day {
+.day-item {
   display: grid;
-  grid-template-columns: 70% 30%;
+  grid-template-columns: 60% 40%;
   border-radius: 12px;
   background-color: #333333;
   width: 90%;

@@ -50,7 +50,7 @@ export default {
     getProfileData() {
       console.log(profile);
       if (this.uid.length) {
-        profile.getProfile(this.uid).then(data => {
+        profile.getProfile().then(data => {
           if (data) {
             this.weight = data.weight;
             this.height = data.height;
@@ -66,6 +66,7 @@ export default {
         kcalGoal: parseInt(this.kcalGoal)
       };
       profile.updateProfile(this.uid, data);
+      this.$router.push({ path: "/day" });
     }
   },
   watch: {
