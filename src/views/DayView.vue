@@ -3,6 +3,7 @@
     <div class="row width-60">
       <div class="box col-lg-5">
         <KcalMeter v-bind:kcal="kcal" v-bind:kcalGoal="kcalGoal" />
+        <div class="macro" @click="showMacroDialog = true">Macroelements</div>
       </div>
       <div class="box col-lg-5">
         <div class="date-text">{{displayDate()}}</div>
@@ -12,29 +13,38 @@
         </div>
       </div>
       <div class="box col-lg-5">
-        <MealList v-bind:meals="meals" />
+        <MealList @openMealDialog="openMealDialog" v-bind:meals="meals" />
       </div>
     </div>
+    <MacroDialog v-if="showMacroDialog" @close="showMacroDialog = false" v-bind:meals="meals" />
+    <MealDialog v-if="showMealDialog" @close="showMealDialog = false" v-bind:meal="selectedMeal" />
   </div>
 </template>
 
 <script>
 import KcalMeter from "@/components/KcalMeter.vue";
 import MealList from "@/components/MealList.vue";
+import MacroDialog from "@/components/MacroDialog.vue";
+import MealDialog from "@/components/MealDialog.vue";
 import * as food from "../firebase/food";
 import * as profile from "../firebase/profile";
 export default {
   name: "DayView",
   components: {
     KcalMeter,
-    MealList
+    MealList,
+    MacroDialog,
+    MealDialog
   },
   data: function() {
     return {
       percent: 0,
       kcal: 0,
       kcalGoal: 0,
-      meals: []
+      meals: [],
+      selectedMeal: {},
+      showMacroDialog: false,
+      showMealDialog: false
     };
   },
   methods: {
@@ -79,6 +89,11 @@ export default {
     },
     addMeal() {
       this.$router.push("/findItem");
+    },
+    openMealDialog(meal) {
+      console.log(meal);
+      this.selectedMeal = meal;
+      this.showMealDialog = true;
     }
   },
   mounted: function() {
@@ -89,6 +104,11 @@ export default {
     $route: function() {
       this.getMeals();
       this.getUserKcalGoal();
+    }
+  },
+  computed: {
+    macros: function() {
+      return 12;
     }
   }
 };
@@ -113,5 +133,10 @@ export default {
   font-size: 28px;
   font-weight: bold;
   margin-bottom: 12px;
+}
+.macro {
+  margin-top: 18px;
+  font-size: 20px;
+  color: darken(#6ee2f5, 7);
 }
 </style>
