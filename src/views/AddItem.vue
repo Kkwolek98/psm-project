@@ -75,8 +75,8 @@ export default {
         carbs: this.carbs,
         time: new Date().getTime()
       };
-      console.log(foodData);
       fb.addData(foodData);
+      this.$router.push("/day");
     }
   },
   mounted: function() {

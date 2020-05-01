@@ -29,6 +29,9 @@ export default {
   padding: 0 8px;
   .meal-name {
     text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 @media (max-width: 1100px) {

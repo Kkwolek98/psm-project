@@ -76,6 +76,9 @@ export default {
   line-height: 2;
   margin-bottom: 12px;
   padding: 0 8px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 @media (max-width: 1180px) {
   .result-item {
