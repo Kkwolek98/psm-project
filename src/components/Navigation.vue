@@ -22,7 +22,7 @@ export default {
     },
     loggedInRoutes: function() {
       return [
-        ['/', '<img alt="FoodLog" src=' + this.img + ' width="50px" height="50px">'],
+        ['/', '<img alt="FoodLog" src=' + this.img + ' class="logo">'],
         ['/about', 'About'],
         ['/findItem', 'Log Item'],
         ['/journal', this.user],
@@ -39,3 +39,11 @@ export default {
   }
 }
 </script>
+
+<style>
+.logo{
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+}
+</style>
