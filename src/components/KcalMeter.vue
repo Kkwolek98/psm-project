@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="kcal-text">{{kcal.toFixed(0)}} / {{kcalGoal}} kcal</div>
-    <div class="meter">
+    <div class="meter" v-bind:class="{'meter-limit' : barWidth >= 95}">
       <div id="inner-bar"></div>
     </div>
   </div>
@@ -11,13 +11,23 @@
 export default {
   name: "KcalMeter",
   props: ["kcal", "kcalGoal"],
+  data: function() {
+    return {
+      barWidth: 0
+    };
+  },
   methods: {
     setInnerBar() {
       let bar = document.getElementById("inner-bar");
       let barWidth = (this.percent = Math.floor(
         (this.kcal / this.kcalGoal) * 100
       ));
-      bar.style.width = barWidth + "%";
+      this.barWidth = barWidth;
+      if (barWidth <= 100) {
+        bar.style.width = barWidth + "%";
+      } else {
+        bar.style.width = 100 + "%";
+      }
     }
   },
   mounted: function() {
@@ -48,11 +58,16 @@ export default {
     background: linear-gradient(to right, #6ee2f5 -1%, #6454f0 100%);
   }
 }
+.meter-limit {
+  #inner-bar {
+    background: linear-gradient(to right, #fbd72b -1%, #f9484a 100%);
+  }
+}
 .kcal-text {
   font-size: 22px;
   margin-bottom: 18px;
 }
-@media (max-width: 1550px) {
+@media (max-width: 1450px) {
   .meter {
     width: 90%;
   }
