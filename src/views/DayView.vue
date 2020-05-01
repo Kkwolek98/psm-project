@@ -69,4 +69,14 @@ export default {
   width: 60%;
   margin: 0 auto;
 }
+@media (max-width: 990px) {
+  .width-60 {
+    width: 80%;
+  }
+  @media (max-width: 600px) {
+    .width-60 {
+      width: 100%;
+    }
+  }
+}
 </style>
