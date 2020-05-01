@@ -9,7 +9,7 @@
         @click="routeTo(day.date.getTime())"
       >
         <div class="day-name">{{day.date.getDate()}}.{{day.date.getMonth()}}</div>
-        <div class="day-calories">{{day.calories}} kcal</div>
+        <div class="day-calories">{{day.calories.toFixed(0)}} kcal</div>
       </div>
     </div>
   </div>
@@ -24,7 +24,7 @@ export default {
     getUser() {
       let email = profile.getLoggedUser().email;
       if (email) {
-        this.userEmail = email; 
+        this.userEmail = email;
         console.log(email);
       } else {
         console.warn("No user logged in");

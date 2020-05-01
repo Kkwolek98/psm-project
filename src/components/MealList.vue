@@ -3,7 +3,7 @@
     <h3 style="text-align: left">Meals</h3>
     <div class="meal" v-for="meal in meals" :key="meal.time">
       <div class="meal-name">{{meal.name}}</div>
-      <div class="meal-kcal">{{meal.calories}} kcal</div>
+      <div class="meal-kcal">{{meal.calories.toFixed(0)}} kcal</div>
     </div>
     <div v-if="!meals.length">No meals for that day</div>
   </div>
