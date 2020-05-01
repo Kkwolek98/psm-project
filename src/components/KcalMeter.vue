@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="kcal-text">{{kcal}} / {{kcalGoal}} kcal</div>
+    <div class="kcal-text">{{kcal.toFixed(0)}} / {{kcalGoal}} kcal</div>
     <div class="meter">
       <div id="inner-bar"></div>
     </div>
