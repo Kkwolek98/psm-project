@@ -13,10 +13,11 @@
         </div>
       </div>
       <div class="box col-lg-5">
-        <MealList v-bind:meals="meals" />
+        <MealList @openMealDialog="openMealDialog" v-bind:meals="meals" />
       </div>
     </div>
     <MacroDialog v-if="showMacroDialog" @close="showMacroDialog = false" v-bind:meals="meals" />
+    <MealDialog v-if="showMealDialog" @close="showMealDialog = false" v-bind:meal="selectedMeal" />
   </div>
 </template>
 
@@ -24,6 +25,7 @@
 import KcalMeter from "@/components/KcalMeter.vue";
 import MealList from "@/components/MealList.vue";
 import MacroDialog from "@/components/MacroDialog.vue";
+import MealDialog from "@/components/MealDialog.vue";
 import * as food from "../firebase/food";
 import * as profile from "../firebase/profile";
 export default {
@@ -31,7 +33,8 @@ export default {
   components: {
     KcalMeter,
     MealList,
-    MacroDialog
+    MacroDialog,
+    MealDialog
   },
   data: function() {
     return {
@@ -39,7 +42,9 @@ export default {
       kcal: 0,
       kcalGoal: 0,
       meals: [],
-      showMacroDialog: false
+      selectedMeal: {},
+      showMacroDialog: false,
+      showMealDialog: false
     };
   },
   methods: {
@@ -84,6 +89,11 @@ export default {
     },
     addMeal() {
       this.$router.push("/findItem");
+    },
+    openMealDialog(meal) {
+      console.log(meal);
+      this.selectedMeal = meal;
+      this.showMealDialog = true;
     }
   },
   mounted: function() {
