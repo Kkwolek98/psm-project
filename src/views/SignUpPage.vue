@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <form class="signup-form box box-center">
+    <form class="signup-form box col-md-3">
       <label for="signup-email">Email</label>
       <input type="email" id="signup-email" v-model="email" required />
       <label for="signup-password">Password</label>
