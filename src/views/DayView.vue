@@ -1,10 +1,10 @@
 <template>
   <div class="day">
     <div class="row width-60">
-      <div class="box kcal-box">
+      <div class="box col-md-4">
         <KcalMeter v-bind:kcal="kcal" v-bind:kcalGoal="kcalGoal" />
       </div>
-      <div class="box kcal-box">
+      <div class="box col-md-4">
         <MealList v-bind:meals="meals" />
       </div>
     </div>
@@ -32,10 +32,18 @@ export default {
   },
   methods: {
     getMeals() {
-      food.getMealsForToday().then(meals => {
-        this.meals = meals;
-        this.countCalories();
-      });
+      let query = this.$route.query;
+      if (!query.day) {
+        food.getMealsForToday().then(meals => {
+          this.meals = meals;
+          this.countCalories();
+        });
+      } else {
+        food.getMealsForDay(query.date).then(meals => {
+          this.meals = meals;
+          this.countCalories();
+        });
+      }
     },
     countCalories() {
       this.meals.forEach(meal => {
@@ -57,10 +65,6 @@ export default {
 </script>
 
 <style lang="scss">
-.kcal-box {
-  width: 360px;
-  margin: 0 auto;
-}
 .width-60 {
   width: 60%;
   margin: 0 auto;

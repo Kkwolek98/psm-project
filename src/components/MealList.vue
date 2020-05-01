@@ -5,6 +5,7 @@
       <div class="meal-name">{{meal.name}}</div>
       <div class="meal-kcal">{{meal.calories}} kcal</div>
     </div>
+    <div v-if="!meals.length">No meals for that day</div>
   </div>
 </template>
 

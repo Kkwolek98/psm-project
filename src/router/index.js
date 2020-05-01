@@ -41,6 +41,7 @@ const routes = [
     path: '/day',
     name: 'Day',
     meta: {
+      display: "Summary",
       requiresAuth: true
     },
     component: () => import('../views/DayView.vue'),
