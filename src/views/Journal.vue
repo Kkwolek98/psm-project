@@ -1,5 +1,5 @@
 <template>
-  <div class="jurnal">
+  <div class="Journal">
     <div class="box col-md-3">
       <h3>Last Week</h3>
       <div
@@ -19,7 +19,7 @@
 import * as profile from "../firebase/profile";
 import * as food from "../firebase/food";
 export default {
-  name: "Jurnal",
+  name: "Journal",
   methods: {
     getUser() {
       let email = profile.getLoggedUser().email;
