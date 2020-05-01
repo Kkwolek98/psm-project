@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <HeaderTitle />
-    <div class="router-wrap">
+      <div v-bind:class="{ 'route-wrap': onAboutPage}">
       <router-view class="router" />
     </div>
     <Navigation :user="currentUser" :img="img" />
