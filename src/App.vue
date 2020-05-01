@@ -1,8 +1,10 @@
 <template>
   <div id="app">
     <HeaderTitle />
-    <Navigation :user="currentUser" :img="img"/>
-    <router-view class="router" />
+    <Navigation :user="currentUser" :img="img" />
+    <div class="router-wrap">
+      <router-view class="router" />
+    </div>
   </div>
 </template>
 
@@ -134,7 +136,7 @@ h3 {
 <script>
 import HeaderTitle from "@/components/HeaderTitle.vue";
 import Navigation from "@/components/Navigation.vue";
-import firebase from './firebase/init'
+import firebase from "./firebase/init";
 
 export default {
   data: function() {
