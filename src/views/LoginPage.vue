@@ -41,7 +41,7 @@ export default {
     },
     goToHome() {
       Vue.prototype.$email = this.email;
-      this.$router.push({ name: "Home" });
+      this.$router.push("/day");
     }
   }
 };
