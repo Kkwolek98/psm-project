@@ -53,4 +53,22 @@ export default {
   pointer-events: none;
   user-select: none;
 }
+@media (max-width: 550px) {
+  .title-small {
+    font-size: 24px;
+  }
+  .title-big {
+    font-size: 86px;
+    top: -100px;
+  }
+}
+@media (max-width: 450px) {
+  .title-small {
+    font-size: 24px;
+  }
+  .title-big {
+    font-size: 56px;
+    top: -70px;
+  }
+}
 </style>
