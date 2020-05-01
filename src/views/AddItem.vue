@@ -73,7 +73,7 @@ export default {
         fats: this.fats,
         protein: this.protein,
         carbs: this.carbs,
-        time: new Date()
+        time: new Date().getTime()
       };
       console.log(foodData);
       fb.addData(foodData);

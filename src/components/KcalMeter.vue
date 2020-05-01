@@ -22,6 +22,14 @@ export default {
   },
   mounted: function() {
     this.setInnerBar();
+  },
+  watch: {
+    kcal: function() {
+      this.setInnerBar();
+    },
+    kcalGoal() {
+      this.setInnerBar();
+    }
   }
 };
 </script>
@@ -43,5 +51,10 @@ export default {
 .kcal-text {
   font-size: 22px;
   margin-bottom: 18px;
+}
+@media (max-width: 1550px) {
+  .meter {
+    width: 90%;
+  }
 }
 </style>
