@@ -1,6 +1,6 @@
 <template>
   <div class="find">
-    <div class="box col-lg-3">
+    <div class="box col-sm-4">
       <SearchBar />
       <div>...or scan barcode.</div>
     </div>
