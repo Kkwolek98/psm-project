@@ -1,18 +1,8 @@
 <template>
   <div id="app">
     <HeaderTitle />
+    <Navigation :user="currentUser" :img="img"/>
     <router-view class="router" />
-
-    <div id="nav">
-      <img id="img" v-if="logged" :src="img" >
-      <router-link to="/" v-if="logged">Home</router-link>|
-      <router-link to="/about" v-if="logged">About</router-link> |
-      <router-link to="/findItem" v-if="logged">Find Item</router-link> |
-      <router-link to="/login" v-if="!logged">Log In</router-link> |
-      <router-link to="/signup" v-if="!logged">Sign Up</router-link> |
-      <router-link to="/logout" v-if="logged">Log Out</router-link>
-      <span v-if="logged">{{this.currentUser}}</span>
-    </div>
   </div>
 </template>
 
@@ -46,15 +36,6 @@ $button-gradient-second: #6454f0;
     &.router-link-exact-active {
       color: $secondary-font-color;
     }
-  }
-
-  #img{
-    max-width: 70px;
-    max-height: 70px;
-    padding: 4px;
-    margin: 4px;
-    border-radius: 13px;
-    display: inline-block
   }
 }
 
@@ -151,6 +132,7 @@ h3 {
 
 <script>
 import HeaderTitle from "@/components/HeaderTitle.vue";
+import Navigation from "@/components/Navigation.vue";
 import firebase from './firebase/init'
 
 export default {
@@ -174,7 +156,8 @@ export default {
     
   },
   components: {
-    HeaderTitle
+    HeaderTitle,
+    Navigation
   }
 };
 </script>
