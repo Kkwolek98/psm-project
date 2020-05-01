@@ -74,7 +74,7 @@ export default {
       });
     },
     displayDate() {
-      let time = this.$route.query.day;
+      let time = parseInt(this.$route.query.day);
       let string;
       let date = new Date(time);
       if (!time || date.getDate() == new Date().getDate()) {
