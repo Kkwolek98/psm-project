@@ -24,7 +24,7 @@ export default {
     getUser() {
       let email = profile.getLoggedUser().email;
       if (email) {
-        this.userEmail = email;
+        this.userEmail = email; 
         console.log(email);
       } else {
         console.warn("No user logged in");

@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 import firebase from '../firebase/init'
 
 Vue.use(VueRouter)
@@ -8,13 +7,12 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home,
-    props: true,
+    name: 'Day',
     meta: {
+      display: "Summary",
       requiresAuth: true
-    }
-
+    },
+    component: () => import('../views/DayView.vue'),
   },
   {
     path: '/profile',
