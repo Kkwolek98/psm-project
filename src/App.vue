@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <HeaderTitle />
-    <Navigation :user="currentUser" :img="img" />
     <div class="router-wrap">
       <router-view class="router" />
     </div>
+    <Navigation :user="currentUser" :img="img" />
   </div>
 </template>
 
