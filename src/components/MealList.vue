@@ -29,9 +29,12 @@ export default {
   padding: 0 8px;
   .meal-name {
     text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
-@media (max-width: 1180px) {
+@media (max-width: 1100px) {
   .meal {
     height: 64px;
   }
@@ -40,10 +43,11 @@ export default {
   .meal {
     height: 32px;
   }
-}
-@media (max-width: 480px) {
-  .meal {
-    height: 64px;
+  @media (max-width: 330px) {
+    .meal {
+      height: 64px;
+      grid-template-columns: 65% 35%;
+    }
   }
 }
 </style>

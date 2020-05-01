@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <HeaderTitle />
-    <Navigation :user="currentUser" :img="img" />
-    <div v-bind:class="{ 'route-wrap': onAboutPage}">
+      <div v-bind:class="{ 'route-wrap': onAboutPage}">
       <router-view class="router" />
     </div>
+    <Navigation :user="currentUser" :img="img" />
   </div>
 </template>
 
