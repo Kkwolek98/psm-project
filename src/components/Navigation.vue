@@ -1,6 +1,6 @@
 <template>
     <div id="nav">
-      <nav class="navbar fixed-bottom navbar-light bg-light">
+      <nav class="navbar fixed-bottom navbar-dark bg-dark">
         <router-link 
           v-for="route in routes" 
           :key="route[1]" 
