@@ -69,10 +69,10 @@ export default {
     log: function() {
       let foodData = {
         name: this.food.name,
-        calories: this.food.calories,
-        fats: this.food.fats,
-        protein: this.food.protein,
-        carbs: this.food.carbs,
+        calories: this.calories,
+        fats: this.fats,
+        protein: this.protein,
+        carbs: this.carbs,
         time: new Date()
       };
       console.log(foodData);
