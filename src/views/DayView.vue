@@ -14,7 +14,8 @@
 <script>
 import KcalMeter from "@/components/KcalMeter.vue";
 import MealList from "@/components/MealList.vue";
-
+import * as food from "../firebase/food";
+import * as profile from "../firebase/profile";
 export default {
   name: "DayView",
   components: {
@@ -24,31 +25,33 @@ export default {
   data: function() {
     return {
       percent: 0,
-      kcal: 900,
-      kcalGoal: 2100,
-      meals: [
-        {
-          name: "McNuggets 6pcs",
-          kcal: 320
-        },
-        {
-          name: "McNuggets 7pcs",
-          kcal: 370
-        },
-        {
-          name: "McNuggets 8pcs",
-          kcal: 720
-        }
-      ]
+      kcal: 0,
+      kcalGoal: 0,
+      meals: []
     };
   },
   methods: {
-    setPercentage() {
-      this.percent = Math.floor((this.kcal / this.kcalGoal) * 100);
+    getMeals() {
+      food.getMealsForToday().then(meals => {
+        this.meals = meals;
+        this.countCalories();
+      });
+    },
+    countCalories() {
+      this.meals.forEach(meal => {
+        this.kcal += meal.calories;
+      });
+    },
+    getUserKcalGoal() {
+      profile.getProfile().then(profile => {
+        console.log(profile);
+        this.kcalGoal = profile.kcalGoal;
+      });
     }
   },
   mounted: function() {
-    this.setPercentage();
+    this.getMeals();
+    this.getUserKcalGoal();
   }
 };
 </script>

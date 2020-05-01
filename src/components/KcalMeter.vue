@@ -22,6 +22,14 @@ export default {
   },
   mounted: function() {
     this.setInnerBar();
+  },
+  watch: {
+    kcal: function() {
+      this.setInnerBar();
+    },
+    kcalGoal() {
+      this.setInnerBar();
+    }
   }
 };
 </script>
