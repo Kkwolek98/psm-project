@@ -2,7 +2,7 @@
   <div id="app">
     <HeaderTitle />
     <Navigation :user="currentUser" :img="img" />
-    <div class="router-wrap">
+    <div v-bind:class="{ 'route-wrap': onAboutPage}">
       <router-view class="router" />
     </div>
   </div>
