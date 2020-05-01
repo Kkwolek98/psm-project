@@ -48,7 +48,7 @@ export default {
       console.log(week);
     },
     routeTo(day) {
-      this.$router.push({ path: "day", query: { day } });
+      this.$router.push({ path: "/day", query: { day } });
     }
   },
   data: function() {

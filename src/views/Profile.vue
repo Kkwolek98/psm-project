@@ -66,6 +66,7 @@ export default {
         kcalGoal: parseInt(this.kcalGoal)
       };
       profile.updateProfile(this.uid, data);
+      this.$router.push({ path: "/day" });
     }
   },
   watch: {

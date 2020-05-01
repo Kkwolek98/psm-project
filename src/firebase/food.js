@@ -22,9 +22,10 @@ export async function getMealsForToday() {
 }
 
 export async function getMealsForDay(day) {
+    day = new Date().setTime(day);
     let entries = fb.firestore.collection('entries');
     let uid = fb.auth.currentUser.uid;
-    day = { min: day.setHours(0, 0, 1), max: day.setHours(23, 59, 59) }
+    day = { min: new Date(day).setHours(0, 0, 1), max: new Date(day).setHours(23, 59, 59) }
     let todayList = entries.where("userId", "==", uid).where("time", ">=", day.min).where("time", "<=", day.max);
     let toReturn = [];
     await todayList.get().then(

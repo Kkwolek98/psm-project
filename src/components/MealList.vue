@@ -31,4 +31,19 @@ export default {
     text-align: left;
   }
 }
+@media (max-width: 1180px) {
+  .meal {
+    height: 64px;
+  }
+}
+@media (max-width: 990px) {
+  .meal {
+    height: 32px;
+  }
+}
+@media (max-width: 480px) {
+  .meal {
+    height: 64px;
+  }
+}
 </style>

@@ -1,10 +1,10 @@
 <template>
   <div class="day">
     <div class="row width-60">
-      <div class="box col-md-4">
+      <div class="box col-lg-5">
         <KcalMeter v-bind:kcal="kcal" v-bind:kcalGoal="kcalGoal" />
       </div>
-      <div class="box col-md-4">
+      <div class="box col-lg-5">
         <MealList v-bind:meals="meals" />
       </div>
     </div>
@@ -39,7 +39,7 @@ export default {
           this.countCalories();
         });
       } else {
-        food.getMealsForDay(query.date).then(meals => {
+        food.getMealsForDay(query.day).then(meals => {
           this.meals = meals;
           this.countCalories();
         });

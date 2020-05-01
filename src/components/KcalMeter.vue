@@ -52,4 +52,9 @@ export default {
   font-size: 22px;
   margin-bottom: 18px;
 }
+@media (max-width: 1550px) {
+  .meter {
+    width: 90%;
+  }
+}
 </style>
