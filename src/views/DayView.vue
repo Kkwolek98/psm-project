@@ -5,6 +5,13 @@
         <KcalMeter v-bind:kcal="kcal" v-bind:kcalGoal="kcalGoal" />
       </div>
       <div class="box col-lg-5">
+        <div class="date-text">{{displayDate()}}</div>
+        <div class="add-item" v-if="displayDate() == 'Today'">
+          <hr />
+          <button @click="addMeal()">Add meal</button>
+        </div>
+      </div>
+      <div class="box col-lg-5">
         <MealList v-bind:meals="meals" />
       </div>
     </div>
@@ -55,11 +62,34 @@ export default {
         console.log(profile);
         this.kcalGoal = profile.kcalGoal;
       });
+    },
+    displayDate() {
+      let time = this.$route.query.day;
+      let string;
+      let date = new Date(time);
+      if (!time || date.getDate() == new Date().getDate()) {
+        string = "Today";
+      } else {
+        string = `
+        ${date.getDate() < 10 ? "0" + date.getDate() : date.getDate()}.${
+          date.getMonth() < 10 ? "0" + date.getMonth() : date.getMonth()
+        }`;
+      }
+      return string;
+    },
+    addMeal() {
+      this.$router.push("/findItem");
     }
   },
   mounted: function() {
     this.getMeals();
     this.getUserKcalGoal();
+  },
+  watch: {
+    $route: function() {
+      this.getMeals();
+      this.getUserKcalGoal();
+    }
   }
 };
 </script>
@@ -78,5 +108,10 @@ export default {
       width: 100%;
     }
   }
+}
+.date-text {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 12px;
 }
 </style>
