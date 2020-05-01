@@ -47,6 +47,8 @@ export default {
     })
     .catch(err => console.error(err))
   }
+
+  
 }
 </script>
 <style scoped lang="scss">

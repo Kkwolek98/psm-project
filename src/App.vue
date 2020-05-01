@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <HeaderTitle />
-      <div v-bind:class="{ 'route-wrap': onAboutPage}">
+      <div v-bind:class="{ 'router-wrap': !onAboutPage}">
       <router-view class="router" />
     </div>
     <Navigation :user="currentUser" :img="img" />
@@ -143,6 +143,7 @@ export default {
     return {
       logged: false,
       currentUser: false,
+      onAboutPage: false,
       img: ""
     };
   },
@@ -163,6 +164,16 @@ export default {
   components: {
     HeaderTitle,
     Navigation
+  },
+  watch: {
+    $route(to) {
+      console.log(to)
+      if(to.name == "About"){
+        this.onAboutPage = true;
+      }else{
+        this.onAboutPage = false;
+      }
+    }
   }
 };
 </script>
