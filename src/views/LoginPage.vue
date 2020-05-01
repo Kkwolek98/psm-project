@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <form class="login-form box box-center" @submit.prevent="loginUser">
+    <form class="login-form box col-md-3" @submit.prevent="loginUser">
       <label for="login-email">Username or Email</label>
       <input type="email" id="login-email" v-model="email" required />
       <label for="login-password">Password</label>

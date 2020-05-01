@@ -1,15 +1,17 @@
 <template>
   <div id="app">
     <HeaderTitle />
-    <router-view class="router" />
+    <div class="router-wrap">
+      <router-view class="router" />
+    </div>
 
     <div id="nav">
-      <img id="img" v-if="logged" :src="img" >
+      <img id="img" v-if="logged" :src="img" />
       <router-link to="/" v-if="logged">Home</router-link>|
-      <router-link to="/about" v-if="logged">About</router-link> |
-      <router-link to="/findItem" v-if="logged">Find Item</router-link> |
-      <router-link to="/login" v-if="!logged">Log In</router-link> |
-      <router-link to="/signup" v-if="!logged">Sign Up</router-link> |
+      <router-link to="/about" v-if="logged">About</router-link>|
+      <router-link to="/findItem" v-if="logged">Find Item</router-link>|
+      <router-link to="/login" v-if="!logged">Log In</router-link>|
+      <router-link to="/signup" v-if="!logged">Sign Up</router-link>|
       <router-link to="/logout" v-if="logged">Log Out</router-link>
       <span v-if="logged">{{this.currentUser}}</span>
     </div>
@@ -28,6 +30,11 @@ $button-gradient-second: #6454f0;
 .router {
   padding-top: 122px;
   z-index: 4;
+}
+.router-wrap {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 32px;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -48,13 +55,13 @@ $button-gradient-second: #6454f0;
     }
   }
 
-  #img{
+  #img {
     max-width: 70px;
     max-height: 70px;
     padding: 4px;
     margin: 4px;
     border-radius: 13px;
-    display: inline-block
+    display: inline-block;
   }
 }
 
@@ -71,7 +78,6 @@ button {
     105deg,
     $button-gradient-first 9%,
     $button-gradient-second 91%
-
   );
   width: 130px !important;
   border: 0;
@@ -88,7 +94,6 @@ button {
     transition: all 0.8s ease-in-out;
     -webkit-transition: all 0.8s ease-in-out;
   }
-
 }
 
 .box {
@@ -114,9 +119,8 @@ button {
     width: 55%;
   }
   #nav #img {
-    display: none
+    display: none;
   }
-
 }
 
 input {
@@ -146,32 +150,33 @@ input {
 h3 {
   text-align: left !important;
 }
-
 </style>
 
 <script>
 import HeaderTitle from "@/components/HeaderTitle.vue";
-import firebase from './firebase/init'
+import firebase from "./firebase/init";
 
 export default {
-  data: function(){
-    return{
+  data: function() {
+    return {
       logged: false,
       currentUser: false,
-      img: '',
-    }
+      img: ""
+    };
   },
   created() {
-    if(firebase.auth.currentUser){
+    if (firebase.auth.currentUser) {
       this.logged = true;
-      this.currentUser = firebase.auth.currentUser.email
+      this.currentUser = firebase.auth.currentUser.email;
     }
 
-    firebase.storage.ref('logo.png').getDownloadURL().then(url => {
-      this.img = url
-    })
-    .catch((err) => console.error(err))
-    
+    firebase.storage
+      .ref("logo.png")
+      .getDownloadURL()
+      .then(url => {
+        this.img = url;
+      })
+      .catch(err => console.error(err));
   },
   components: {
     HeaderTitle
