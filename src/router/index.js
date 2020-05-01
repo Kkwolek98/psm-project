@@ -25,12 +25,12 @@ const routes = [
 
   },
   {
-    path: '/jurnal',
-    name: 'Jurnal',
-    component: () => import('../views/Jurnal.vue'),
+    path: '/Journal',
+    name: 'Journal',
+    component: () => import('../views/Journal.vue'),
     props: true,
     meta: {
-      display: "Jurnal",
+      display: "Journal",
       requiresAuth: true
     }
 
