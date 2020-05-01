@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <HeaderTitle />
-      <div v-bind:class="{ 'router-wrap': !onAboutPage}">
+    <div v-bind:class="{ 'router-wrap': !onAboutPage}">
       <router-view class="router" />
     </div>
     <Navigation :user="currentUser" :img="img" />
@@ -85,6 +85,16 @@ button {
   margin: 0 auto;
   margin-bottom: 32px !important;
 }
+@media (min-width: 400px) {
+  .box {
+    min-width: 320px;
+  }
+}
+@media (max-width: 600px) {
+  .router-wrap {
+    padding-bottom: 62px;
+  }
+}
 
 .box-center {
   width: 15%;
@@ -167,10 +177,10 @@ export default {
   },
   watch: {
     $route(to) {
-      console.log(to)
-      if(to.name == "About"){
+      console.log(to);
+      if (to.name == "About") {
         this.onAboutPage = true;
-      }else{
+      } else {
         this.onAboutPage = false;
       }
     }
