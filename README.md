@@ -1,4 +1,4 @@
-# psm
+# FoodLog
 
 ## Project setup
 ```
