@@ -58,6 +58,10 @@ export default {
   font-family: 'Exo', sans-serif;
 }
 
+.about{
+  background: #1c1c1c;
+}
+
   .container p {
     font-family: 'Exo', sans-serif;
     letter-spacing: 1.2;
