@@ -91,9 +91,10 @@ export default {
         friends: this.friends,
         name: this.name
       };
-      console.log(data);
-      profile.updateProfile(this.uid, data);
-      this.$router.push({ path: "/day" });
+      console.log(data, this.uid);
+      profile.updateProfile(this.uid, data)
+        .then(() => this.$router.push({ path: "/day" }));
+      
     },
     addFriend() {
       this.friends.push({

@@ -6,13 +6,15 @@ export function getLoggedUser() {
 
 export function updateProfile(uid, data) {
     let profiles = fb.firestore.collection('profiles')
-    if (uid) profiles.doc(uid).get().then(doc => {
-        if (!doc.exists) {
-            profiles.doc(uid).set(data);
-        } else {
-            profiles.doc(uid).update(data);
-        }
-    });
+    if (uid) {
+        return profiles.doc(uid).get().then(doc => {
+            if (!doc.exists) {
+                return profiles.doc(uid).set(data);
+            } else {
+                return profiles.doc(uid).update(data);
+            }
+        });
+    }
 }
 
 export async function getProfile() {
