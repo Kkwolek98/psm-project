@@ -4,15 +4,18 @@ export function getLoggedUser() {
     return fb.auth.currentUser;
 }
 
-export function updateProfile(uid, data) {
+export async function updateProfile(uid, data) {
     let profiles = fb.firestore.collection('profiles')
-    if (uid) profiles.doc(uid).get().then(doc => {
-        if (!doc.exists) {
-            profiles.doc(uid).set(data);
-        } else {
-            profiles.doc(uid).update(data);
-        }
-    });
+    if (uid) {
+        profiles.doc(uid).get().then(doc => {
+            if (!doc.exists) {
+                profiles.doc(uid).set(data)
+            } else {
+                profiles.doc(uid).update(data)
+            }
+        });
+    }
+    return true;
 }
 
 export async function getProfile() {
