@@ -1,6 +1,7 @@
 <template>
   <div class="search-bar">
-    <input type="text" v-model="search" @input="delay" />
+    <label for="meal">Add your meal</label>
+    <input type="text" v-model="search" @input="delay" name="meal"/>
     <!-- <ul class="autocomplete-results">
       <li class="autocomplete-result" v-for="item in autocompleteItems" :key="item.food_name">
         <a @click="routeTo(item.food_name)">{{item.food_name}}</a>
