@@ -62,3 +62,22 @@ export async function getCaloriesForDay(day) {
     )
     return caloriesTotal;
 }
+
+export async function getCaloriesForDayForUser(day, uid) {
+    let entries = fb.firestore.collection('entries');
+    day = { min: day.setHours(0, 0, 1), max: day.setHours(23, 59, 59) }
+    let dayList = entries.where("userId", "==", uid).where("time", ">=", day.min).where("time", "<=", day.max);
+    let caloriesTotal = 0;
+    await dayList.get().then(
+        snapshot => {
+            if (snapshot.empty) {
+                console.log("No data for that day!");
+            } else {
+                snapshot.forEach(doc => {
+                    caloriesTotal += doc.data().calories;
+                })
+            }
+        }
+    )
+    return caloriesTotal;
+}
