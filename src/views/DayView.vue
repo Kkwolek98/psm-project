@@ -3,7 +3,7 @@
     <div class="row width-60">
       <div class="box col-lg-5">
         <KcalMeter v-bind:kcal="kcal" v-bind:kcalGoal="kcalGoal" />
-        <div class="macro" @click="showMacroDialog = true">Macroelements</div>
+        <div class="macro clickable" @click="showMacroDialog = true">Macroelements</div>
       </div>
       <div class="box col-lg-5">
         <div class="date-text">{{displayDate()}}</div>
