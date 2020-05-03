@@ -16,6 +16,7 @@
 
 <script>
 import firebase from "../firebase/init";
+import * as profile from '../firebase/profile';
 import Vue from "vue";
 export default {
   name: "LoginPage",
@@ -32,7 +33,7 @@ export default {
         .signInWithEmailAndPassword(this.email, this.password)
         .then(user => {
           console.log(user.user.email);
-          this.goToHome();
+          this.goToPath();
         })
         .catch(error => (this.errors = error));
 
@@ -57,7 +58,7 @@ export default {
           console.log(res);
           // ...
 
-          this.goToHome();
+          this.goToPath();
         })
         .catch(error => {
           console.log(error);
@@ -71,6 +72,15 @@ export default {
           // console.log(error.credential);
           // ...
         });
+    },
+    goToPath(){
+      profile.getProfile().then(p =>{       
+        if(!p || !p.kcalGoal){
+          this.$router.push("/profile")
+        }else{
+          this.$router.push('/')
+        }
+      })
     }
   }
 };
