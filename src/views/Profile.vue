@@ -92,8 +92,9 @@ export default {
         name: this.name
       };
       console.log(data);
-      profile.updateProfile(this.uid, data);
-      this.$router.push({ path: "/day" });
+      profile.updateProfile(this.uid, data).then(() => {
+        setTimeout(() => this.$router.push({ path: "/day" }), 900);
+      });
     },
     addFriend() {
       this.friends.push({
@@ -107,7 +108,9 @@ export default {
         friends: this.friends,
         name: this.name
       };
-      profile.updateProfile(this.uid, data);
+      profile
+        .updateProfile(this.uid, data)
+        .then(() => console.log("Friend added"));
     },
     getFriendsWithKcal() {
       let arr = [];
