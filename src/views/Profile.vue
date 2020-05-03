@@ -125,6 +125,9 @@ export default {
           });
         this.friendsWithKcal = arr;
       }
+    },
+    calculateKcalGoal() {
+      return Math.floor(14.7 * this.weight + 569);
     }
   },
   watch: {
@@ -133,6 +136,9 @@ export default {
     },
     friends: function() {
       this.getFriendsWithKcal();
+    },
+    weight: function() {
+      this.kcalGoal = this.calculateKcalGoal();
     }
   },
   mounted: function() {
